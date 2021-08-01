@@ -33,10 +33,10 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product',
+    modelName: 'user_model',
   }
 );
 // Product.belongsTo(Category, {foreignKey: 'category_id'});
 
-module.exports = Product;
+module.exports = User;
 

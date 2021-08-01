@@ -1,6 +1,9 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const router = require('express').Router();
+
+
+const flash = require('express-flash')
 const apiRoutes = require('./routes/api');
 const hbsRoutes = require('./routes/hbs');
 
@@ -14,11 +17,11 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json({}))
 app.use(session({secret:"super-secret", saveUninitialized: true, resave: true}))
 let sess; 
+app.use(flash())
 app.use('/api', apiRoutes);
 app.use( hbsRoutes);
 app.use((req, res) => {
   res.send("<h1>Wrong Route!</h1>")
 });
-
 
 app.listen(PORT, () => {console.log(`listening on port${PORT}`)})
