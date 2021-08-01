@@ -12,7 +12,13 @@ router.post('/register', (req, res) => {
 
     }).catch(err => {
         console.log(`api/register | User registration failed!${err}`)
-        req.flash('error', 'the error message')
+        // req.flash('registration_error', ` ERROR: ${err}`)
+        req.session.sessionFlash = {
+            type: 'success',
+            message: 'This is a flash message using custom middleware and express-session.'
+        }
+        // res.render('layouts/signup', { sessionFlash: res.locals.sessionFlash });
+        res.redirect(301, '/signup')
     })
 }) 
 

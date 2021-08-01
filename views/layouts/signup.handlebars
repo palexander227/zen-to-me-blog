@@ -4,3 +4,14 @@
 <button type="submit">Submit</button>
 
 </form>
+
+{{!-- If there is an error, render the error message --}}
+{{!-- {{#if expressFlash  }}
+<div style="color: red">{{expressFlash}}</div>
+{{/if}} --}}
+
+{{#if sessionFlash.message}}
+    <div class="{{ sessionFlash.type }}">
+        <strong>FLASH!</strong> {{ sessionFlash.message }}
+    </div>
+{{/if}}
