@@ -4,9 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Blog Site</title>
+    {{#each css}}
+        <link rel="stylesheet" href="/{{this}}">
+    {{/each}}
+
+    <link rel='stylesheet' href='../../global.css'> <!-- add this link for css -->
 </head>
 <body>
-    {{{body}}}
+    <nav>
+        <span>My Blog Site</span>       <!-- title wrapped in a span -->
+        <div>                           <!-- links wrapped in a div -->
+            <a href='/welcome'>Home</a>
+            <a href='/signup'>Sign Up</a>
+            <a href='/login'>Log In</a>
+            {{#if user}}
+                <a href='/profile'>Profile</a>
+                <a href='/api/logout'>Log Out</a>
+            {{/if}}
+        </div>
+    </nav>
+
+    <main>                              <!-- {{{body}}} wrapped in a main -->
+        {{{body}}}
+    </main>
+
+    <footer>Footer</footer>             <!-- add a footer -->
+        
 </body>
 </html>

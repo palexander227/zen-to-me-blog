@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const router = require('express').Router();
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 const flash = require('express-flash')
 const apiRoutes = require('./routes/api');
@@ -24,6 +25,7 @@ app.use(session({
     resave: 'true',
     secret: 'secret'
 }));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(function(req, res, next){
     // if there's a flash message in the session request, make it available in the response, then delete it

@@ -1,25 +1,56 @@
 const router = require('express').Router();
 const flash = require('express-flash')
 const handleRegister = require('../controllers/handleRegister');
+const handleLogin = require('../controllers/handleLogin');
+
+
 router.post('/register', (req, res) => {
-    sess = req.session
-    sess.user = req.body.username
+    
     handleRegister(req.body.username, req.body.password)
     .then(()=>{
-        console.log('api/register | User registered successfully! Redirecting to welcome.')
+        console.log('api/register | User registered successfully! Redirecting to login.')
         
-        res.redirect('/welcome')
+        res.redirect('/login')
 
     }).catch(err => {
         console.log(`api/register | User registration failed!${err}`)
         // req.flash('registration_error', ` ERROR: ${err}`)
         req.session.sessionFlash = {
-            type: 'success',
-            message: 'This is a flash message using custom middleware and express-session.'
+            type: 'error_message',
+            message: ` ERROR: ${err}`
         }
         // res.render('layouts/signup', { sessionFlash: res.locals.sessionFlash });
         res.redirect(301, '/signup')
     })
-}) 
+})
+
+router.post('/authorize', (req, res) => {
+    
+    handleLogin(req.body.username, req.body.password)
+    .then(()=>{
+        console.log('api/login | User logged in successfully! Redirecting to welcome.')
+        sess = req.session
+        sess.user = req.body.username
+        res.redirect('/welcome')
+
+    }).catch(err => {
+        console.log(`api/login | User login failed!${err}`)
+        // req.flash('registration_error', ` ERROR: ${err}`)
+        req.session.sessionFlash = {
+            type: 'error_message',
+            message: ` ERROR: ${err}`
+        }
+        // res.render('layouts/signup', { sessionFlash: res.locals.sessionFlash });
+        res.redirect(301, '/login')
+    })
+})
+
+
+router.all('/logout', (req, res) => {
+    delete req.session.user
+    res.redirect('/welcome')
+})
+
+
 
 module.exports=router
