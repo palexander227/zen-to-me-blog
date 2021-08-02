@@ -51,6 +51,26 @@ router.all('/logout', (req, res) => {
     res.redirect('/welcome')
 })
 
+router.post('/create-post', (req, res) => {
+    
+    handlePublish(req.body.title, req.body.tags, req.body.content)
+    .then(()=>{
+        console.log('api/create-post | Post created successfully! Redirecting to profile.')
+        
+        res.redirect('/profile')
+
+    }).catch(err => {
+        console.log(`api/create-post | Publish failed!${err}`)
+        // req.flash('registration_error', ` ERROR: ${err}`)
+        req.session.sessionFlash = {
+            type: 'error_message',
+            message: ` ERROR: ${err}`
+        }
+        // res.render('layouts/signup', { sessionFlash: res.locals.sessionFlash });
+        res.redirect(301, '/new-post')
+    })
+})
+
 
 
 module.exports=router

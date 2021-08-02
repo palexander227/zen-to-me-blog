@@ -21,4 +21,10 @@ router.get('/welcome', (req, res) => { sess = req.session
 router.get('/profile', (req, res) => { sess = req.session
     res.render("layouts/profile", {user: sess.user})
 })
+
+router.get('/new-post', (req, res) => { sess = req.session
+    res.render("layouts/newPost", {user: sess.user})
+})
+
+
 module.exports=router
