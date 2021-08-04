@@ -2,10 +2,11 @@ const router = require('express').Router();
 const flash = require('express-flash')
 const handleRegister = require('../controllers/handleRegister');
 const handleLogin = require('../controllers/handleLogin');
+const handlePublish = require('../controllers/handlePublish')
 
 
 router.post('/register', (req, res) => {
-    
+    debugger
     handleRegister(req.body.username, req.body.password)
     .then(()=>{
         console.log('api/register | User registered successfully! Redirecting to login.')
@@ -25,7 +26,6 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/authorize', (req, res) => {
-    
     handleLogin(req.body.username, req.body.password)
     .then(()=>{
         console.log('api/login | User logged in successfully! Redirecting to welcome.')
@@ -52,8 +52,8 @@ router.all('/logout', (req, res) => {
 })
 
 router.post('/create-post', (req, res) => {
-    
-    handlePublish(req.body.title, req.body.tags, req.body.content)
+    console.log(req.session.user)
+    handlePublish(req.body.title, req.body.content, req.session.user)
     .then(()=>{
         console.log('api/create-post | Post created successfully! Redirecting to profile.')
         

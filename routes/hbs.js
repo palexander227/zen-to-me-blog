@@ -23,6 +23,7 @@ router.get('/profile', (req, res) => { sess = req.session
 })
 
 router.get('/new-post', (req, res) => { sess = req.session
+    console.log(req.session.user)
     res.render("layouts/newPost", {user: sess.user})
 })
 
