@@ -1,5 +1,6 @@
 // import models
-// const Product = require('./User');
+const User = require('./User');
+const Post = require('./Post');
 // const Category = require('./Category');
 // const Tag = require('./Tag');
 // const ProductTag = require('./ProductTag');
@@ -22,9 +23,6 @@
 //   through: ProductTag,
 //   foreignKey: "tag_id"
 // });
-// module.exports = {
-//   Product,
-//   Category,
-//   Tag,
-//   ProductTag,
-// };
+module.exports = {
+  User, Post   
+};

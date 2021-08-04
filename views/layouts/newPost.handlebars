@@ -1,0 +1,15 @@
+
+{{#if sessionFlash.message}}
+    <div class="{{ sessionFlash.type }}">
+         {{ sessionFlash.message }}
+    </div>
+{{/if}}
+
+<h1>Create a New Post</h1>
+<form action="/api/create-post" method="post">
+<input name="title" placeholder="My New Post">
+<input name="tags" placeholder="tech, express, node">
+<textarea name="content" placeholder="content..."></textarea>
+<button type="submit">Publish</button>
+<button type="reset">Reset</button>
+</form>
