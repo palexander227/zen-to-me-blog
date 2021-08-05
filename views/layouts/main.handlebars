@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog Site</title>
+    <title>Zen Blog</title>
     {{#each css}}
         <link rel="stylesheet" href="/{{this}}">
     {{/each}}
@@ -13,13 +13,13 @@
 </head>
 <body>
     <nav>
-        <span>My Blog Site</span>       <!-- title wrapped in a span -->
+        <span>Zen Blog</span>       <!-- title wrapped in a span -->
         <div>                           <!-- links wrapped in a div -->
             <a href='/welcome'>Home</a>
             <a href='/signup'>Sign Up</a>
             <a href='/login'>Log In</a>
             {{#if user}}
-                <a href='/profile'>Profile</a>
+                <a href='/published-posts'>Published Posts</a>
                 <a href='/api/logout'>Log Out</a>
             {{/if}}
         </div>

@@ -3,6 +3,7 @@ const flash = require('express-flash')
 const handleRegister = require('../controllers/handleRegister');
 const handleLogin = require('../controllers/handleLogin');
 const handlePublish = require('../controllers/handlePublish')
+const handleGetPosts = require('../controllers/handleGetPosts');
 
 
 router.post('/register', (req, res) => {
@@ -57,7 +58,7 @@ router.post('/create-post', (req, res) => {
     .then(()=>{
         console.log('api/create-post | Post created successfully! Redirecting to profile.')
         
-        res.redirect('/profile')
+        res.redirect('/published-posts')
 
     }).catch(err => {
         console.log(`api/create-post | Publish failed!${err}`)
@@ -69,6 +70,20 @@ router.post('/create-post', (req, res) => {
         // res.render('layouts/signup', { sessionFlash: res.locals.sessionFlash });
         res.redirect(301, '/new-post')
     })
+})
+
+router.get('/post', (req, res) => {
+    handleGetPosts().then(
+        (posts ) => {
+            res.json(posts);
+        }).catch(err => {
+            console.log(`getting all posts failed with ${err}`);
+            req.session.sessionFlash = {
+                type: 'error_message',
+                message: ` ERROR: ${err}`
+            }
+            res.status(500);
+        })
 })
 
 
