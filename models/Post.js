@@ -42,13 +42,13 @@ Post.init(
   }
 );
 
+
 Post.belongsTo(User, {
   foreignKey: {
     name: 'user_name',
     allowNull: false
   }
 })
-
 
 
 

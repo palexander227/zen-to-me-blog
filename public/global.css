@@ -7,8 +7,9 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #888;
+    background: #100f5a;
     padding: 1rem;
+    color: #ddd;
 }
 nav a{
     background: #ddd;
@@ -49,3 +50,37 @@ footer{
     background: #222;
     color: white;
 }
+
+.post {
+    background-color: white;
+    padding: 0.8em;
+    border-radius: 1.2em;
+    margin: 0.8em;
+}
+
+.blog-title{
+    color: blue;
+}
+
+.post-box {
+    border: 1px solid darkblue;
+  }
+  
+  .post-box .content {
+    padding: 0px 10px 0px 10px;
+  }
+  
+  .post-box .posted-by {
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+  
+  .post-box .post-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: darkblue;
+    color: white;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }

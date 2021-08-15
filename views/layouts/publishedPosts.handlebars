@@ -4,11 +4,20 @@
 <div>
     
     {{#each posts}}
-       <div>
-           <h2>{{title}}</h2>
-           <p>{{content}}</p>
-           <p>Posted by {{user_name}}</p>
-       </div> <br>
+    
+       <div class="post-box">
+  <div class="post-header">
+    <div>
+     {{title}}
+    </div>
+    <div class="posted-by">
+      Posted by {{user_name}}
+    </div>
+  </div>
+  <div class="content">
+    <p>{{content}}</p>
+  </div>
+</div> <br>
 
     {{/each}}
 </div>

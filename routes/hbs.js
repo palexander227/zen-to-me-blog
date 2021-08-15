@@ -16,27 +16,56 @@ router.get('/login', (req, res) => {
 
 })
 
-router.get('/welcome', (req, res) => { 
+router.get('/home', (req, res) => { 
     sess = req.session
     handleGetPosts().then(
         (p ) => {
             const posts = JSON.parse(JSON.stringify(p))
-            console.dir(posts)
-            console.log('hello')
-            res.render("layouts/welcome", {user: sess.user, posts})
+            
+            res.render("layouts/home", {user: sess.user, posts})
         }).catch(err => {
             console.log(`getting all posts failed with ${err}`);
             req.session.sessionFlash = {
                 type: 'error_message',
                 message: ` ERROR: ${err}`
             }
-            console.log('bye')
-            res.render("layouts/welcome", {user: sess.user})
+            
+            res.render("layouts/home", {user: sess.user})
+        })
+})
+
+router.get('/my-blogs', (req, res) => { 
+    sess = req.session
+    handleGetPosts('ThinkingAllowed').then(
+        (p ) => {
+            const posts = JSON.parse(JSON.stringify(p))
+            
+            res.render("layouts/home", {user: sess.user, posts})
+        }).catch(err => {
+            console.log(`getting all posts failed with ${err}`);
+            req.session.sessionFlash = {
+                type: 'error_message',
+                message: ` ERROR: ${err}`
+            }
+            
+            res.render("layouts/home", {user: sess.user})
         })
 })
 
 router.get('/published-posts', (req, res) => { sess = req.session
-    res.render("layouts/publishedPosts", {user: sess.user})
+    handleGetPosts(sess.user).then(
+        (p ) => {
+            const posts = JSON.parse(JSON.stringify(p))
+            
+            res.render("layouts/publishedPosts", {user: sess.user, posts})
+        }).catch(err => {
+            console.log(`Trying to get posts for individual user failed' ${err}`);
+            req.session.sessionFlash = {
+                type: 'error_message',
+                message: ` ERROR: ${err}`
+            }
+            res.render("layouts/publishedPosts", {user: sess.user})
+        })
 })
 
 router.get('/new-post', (req, res) => { sess = req.session

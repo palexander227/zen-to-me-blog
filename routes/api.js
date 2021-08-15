@@ -29,10 +29,10 @@ router.post('/register', (req, res) => {
 router.post('/authorize', (req, res) => {
     handleLogin(req.body.username, req.body.password)
     .then(()=>{
-        console.log('api/login | User logged in successfully! Redirecting to welcome.')
+        console.log('api/login | User logged in successfully! Redirecting to home.')
         sess = req.session
         sess.user = req.body.username
-        res.redirect('/welcome')
+        res.redirect('/home')
 
     }).catch(err => {
         console.log(`api/login | User login failed!${err}`)
@@ -49,7 +49,7 @@ router.post('/authorize', (req, res) => {
 
 router.all('/logout', (req, res) => {
     delete req.session.user
-    res.redirect('/welcome')
+    res.redirect('/home')
 })
 
 router.post('/create-post', (req, res) => {
