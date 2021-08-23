@@ -16,12 +16,13 @@
         <span>Zen Blog</span>       <!-- title wrapped in a span -->
         <div>                           <!-- links wrapped in a div -->
             <a href='/home'>Home</a>
-            <a href='/signup'>Sign Up</a>
-            <a href='/login'>Log In</a>
-            <a href='/my-blogs'>My Blogs</a>
             {{#if user}}
+                <a href='/my-blogs'>My Blogs</a>
                 <a href='/published-posts'>Published Posts</a>
                 <a href='/api/logout'>Log Out</a>
+            {{else}}
+                <a href='/signup'>Sign Up</a>
+                <a href='/login'>Log In</a>
             {{/if}}
         </div>
     </nav>

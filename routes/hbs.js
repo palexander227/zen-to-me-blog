@@ -36,7 +36,7 @@ router.get('/home', (req, res) => {
 
 router.get('/my-blogs', (req, res) => { 
     sess = req.session
-    handleGetPosts('ThinkingAllowed').then(
+    handleGetPosts(sess.user).then(
         (p ) => {
             const posts = JSON.parse(JSON.stringify(p))
             
@@ -52,7 +52,8 @@ router.get('/my-blogs', (req, res) => {
         })
 })
 
-router.get('/published-posts', (req, res) => { sess = req.session
+router.get('/published-posts', (req, res) => {
+    sess = req.session
     handleGetPosts(sess.user).then(
         (p ) => {
             const posts = JSON.parse(JSON.stringify(p))
