@@ -3,10 +3,9 @@ const { Post } = require('../models');
 
 const postData = [
   {
-    id: 1,
     title: "A Blogpost",
     content: "Some content",
-    user_name: "A user",
+    user_name: "peter",
   }]
 
 const seedPosts = () => Post.bulkCreate(postData);
