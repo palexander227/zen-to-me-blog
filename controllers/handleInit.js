@@ -5,7 +5,7 @@ const handleInit = async () => {
             User.findOne()
             .then(() => {console.log('database exists')})
             .catch((err) => {
-                if(err.includes(".user_model' doesn't exist")){
+                if(err.message.includes(".user_model' doesn't exist")){
                     console.log("model does not exist, run init")
                 }
             })
