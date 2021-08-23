@@ -4,10 +4,11 @@ const handleRegister = require('../controllers/handleRegister');
 const handleLogin = require('../controllers/handleLogin');
 const handlePublish = require('../controllers/handlePublish')
 const handleGetPosts = require('../controllers/handleGetPosts');
+const handleInit = require('../controllers/handleInit');
 
 
 router.post('/register', (req, res) => {
-    debugger
+    handleInit()
     handleRegister(req.body.username, req.body.password)
     .then(()=>{
         console.log('api/register | User registered successfully! Redirecting to login.')
@@ -73,6 +74,8 @@ router.post('/create-post', (req, res) => {
 })
 
 router.get('/post', (req, res) => {
+    handleInit()
+    console.log('running handleInit')
     handleGetPosts().then(
         (posts ) => {
             res.json(posts);
