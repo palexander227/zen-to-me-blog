@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const handleGetPosts = require('../controllers/handleGetPosts');
+const handleInit = require('../controllers/handleInit');
 
 router.get('/', (req, res) => {
-    
+        handleInit();   
         res.render("home");
 })
 
